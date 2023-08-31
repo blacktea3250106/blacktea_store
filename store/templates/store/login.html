@@ -1,0 +1,92 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    {% block css_files %}
+    <link rel="icon" type="icon" href="{% static "store/images/logo.png" %}">
+    <link rel="stylesheet" href="{% static "store/login.css" %}"/>
+    <link rel="stylesheet" href="{% static "store/carousel.css" %}"/>
+    {% endblock %}
+
+    {% block js_files %}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {% endblock %}
+    
+    <title>
+        BlackTeaStore 會員登入
+    </title>
+</head>
+<body>
+    <div class='header'>
+        <a href="{% url "index" %}">
+            <div class='header-logo'></div>
+        </a>
+        <div class='header-text'>會員登入</div>
+    </div>
+
+    {% block content %}
+    <div class='content'>
+        {% include "store/carousel.html" %}
+
+    
+        <form method="POST" id="login-form">
+            <span>登入</span>
+            {% csrf_token %}
+
+            {% if error_message %}
+                <div class="errorlist">
+                    <div class="errorlist-img"></div>
+                    <div class='errorlist-text'>帳號或密碼錯誤，請再試一次</div>
+                </div>
+            {% endif %}
+
+            {% for form in forms %}
+            {% comment %} <div class="form-control {% if error_message %}invalid{% endif %}"> {% endcomment %}
+            <div class="form-control">
+                {{ form }}
+            </div>
+            {% endfor %}
+
+            
+
+            <button id="login-btn" type="submit">登入</button>
+            <div class='form-or'>或</div>
+
+
+
+            
+            
+
+            
+            
+
+
+            <div class='form-other'>
+                <a href="https://www.facebook.com/">
+                    <div class="form-fb-signup"></div>
+                </a>
+                <a href="https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Faccounts.google.com%2F&followup=https%3A%2F%2Faccounts.google.com%2F&ifkv=AXo7B7XI4wEmpVy7I_X-bi_66MhdxPB7ygUSf4fnjjvuH6UIa_feT8kaCCrBLEUOUAa6fWJs4kAd&passive=1209600&flowName=GlifWebSignIn&flowEntry=ServiceLogin&dsh=S772683682%3A1691261831065975">
+                    <div class="form-gg-signup"></div>
+                </a>
+            </div>
+            <div class='form-forgot-password'><a href="{% url 'change_password' %}">忘記密碼</a></div>
+            <div class='form-login'>還不是會員嗎? <a href="{% url 'register' %}">點我註冊</a></div>
+            <div class='form-check'>登入即代表您同意遵守<a href="">紅茶商城會員協議</a></div>
+          </form>
+    </div>
+    {% endblock content %}
+
+    {% include "store/footer.html" %}
+    <style>
+        .footer {
+            bottom: 0px;
+            background-color: #35363A;
+            height: 150px;
+            width: 1903px;
+        }
+    </style>
+</body>
+</html>

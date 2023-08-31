@@ -1,0 +1,328 @@
+{% load static %}
+
+{% block js_files %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+{% endblock %}
+
+<section id="comments">
+    <ul>
+        {% for comment in comments %}
+            <li>
+
+                {% if comment.user == request.user %}
+                    <div class="comment-btn-box">
+                        <button class="comment-edit-btn" data-form-id="comment-form-{{ comment.id }}"></button>
+                        <button class="comment-delete-btn" data-comment-id="{{ comment.id }}"></button>
+                        {% comment %} <div id="overlay" class="overlay">
+                            <div class="popup">
+                                <p>確定刪除這則留言嗎？</p>
+                                <button id="cancel-delete" class="cancel-button">取消</button>
+                                <button id="confirm-delete" class="confirm-button">確定</button>
+                            </div>
+                        </div> {% endcomment %}
+                    </div>
+                {% endif %}
+
+
+
+                <h4>{{ comment.user }}</h4>
+
+                <div id="stars-{{ comment.id }}" class="star-box">
+                    <img class="star">
+                    <img class="star">
+                    <img class="star">
+                    <img class="star">
+                    <img class="star">
+                </div>
+                <p>{{ comment.date}}</p>                        
+
+                <div class="comment-text" id="comment-text-{{ comment.id }}">
+                    <p>{{ comment.text | linebreaks }}</p>
+                </div>
+                
+                <form id="comment-form-{{ comment.id }}"  class="comment-edit-form" method="POST" action="{% url 'edit_comment' slug=product.slug comment_id=comment.id %}">
+                    {% csrf_token %}
+                    <div class="comment-edit-form-back">
+                        <div id="edit-stars-{{ comment.id }}" class="comment-edit-star-box">
+                            商品評價：
+                            <img class="user-star" src="{% static "store/images/star-gray.png" %}" style="max-width: 16px;">
+                            <img class="user-star" src="{% static "store/images/star-gray.png" %}" style="max-width: 16px;">
+                            <img class="user-star" src="{% static "store/images/star-gray.png" %}" style="max-width: 16px;">
+                            <img class="user-star" src="{% static "store/images/star-gray.png" %}" style="max-width: 16px;">
+                            <img class="user-star" src="{% static "store/images/star-gray.png" %}" style="max-width: 16px;">
+                        </div>
+                        <textarea id="comment-edit-text-{{ comment.id }}" name="text" class="comment-edit-text">{{ comment.text }}</textarea>
+                        <input type="hidden" name="star_num" id="fixed-id_star_num-{{ comment.id }}" value="{{ comment.star_num }}">
+                        <input type="hidden" name="star_num" id="id_star_num-{{ comment.id }}">
+                        <input type="hidden" name="comment_id" value="{{ comment.id }}">
+                    </div>
+                    
+                    <button data-form-id="comment-form-{{ comment.id }}" class="comment-cancel-save-btn" type="button">取消編輯</button>
+                    <button id="comment-save-btn-{{ comment.id }}" class="comment-save-btn" type="submit">確定編輯</button>
+                </form>
+            </li>
+            {% comment %} 編輯表單的星星 {% endcomment %}
+            <script>
+                //製作一個星星評分
+                var divStars = document.getElementById("edit-stars-{{ comment.id }}");
+                var divComment = document.getElementById("comment");
+                var attitude = ["差", "較差", "一般", "好", "很好"];
+                var starNum = {{ comment.star_num |safe }}; //記錄當前第幾顆星星被點擊 init = -1
+                var starArray = Array.from(divStars.children); //星星數組
+                var starImagePath = "{% static "store/images/star.png" %}";
+                var graystarImagePath = "{% static "store/images/star-gray.png" %}";
+
+                
+                if (starNum !== -1) { //滑鼠點擊事件發生，將評分固定在點擊的星星上
+                    for (var i = 0; i < divStars.children.length; i++) {
+                        if (i <= starNum) {
+                            divStars.children[i].src = starImagePath;
+    
+                        } else {
+                            divStars.children[i].src = graystarImagePath;
+                        }
+                    }
+                } else {
+                    for (var i = 0; i < divStars.children.length; i++) {
+                        divStars.children[i].src = graystarImagePath;
+                    }
+                }
+                
+            </script> 
+
+            {% comment %} 靜態留言板的星星 {% endcomment %}
+            <script>
+                //製作一個星星評分
+                var divStars = document.getElementById("stars-{{ comment.id }}");
+                var divComment = document.getElementById("comment");
+                var attitude = ["差", "較差", "一般", "好", "很好"];
+                var starNum = {{ comment.star_num |safe }}; //記錄當前第幾顆星星被點擊 init = -1
+                var starArray = Array.from(divStars.children); //星星數組
+                var starImagePath = "{% static "store/images/star.png" %}";
+                var graystarImagePath = "{% static "store/images/star-gray.png" %}";
+
+                
+                if (starNum !== -1) { //滑鼠點擊事件發生，將評分固定在點擊的星星上
+                    for (var i = 0; i < divStars.children.length; i++) {
+                        if (i <= starNum) {
+                            divStars.children[i].src = starImagePath;
+    
+                        } else {
+                            divStars.children[i].src = graystarImagePath;
+                        }
+                    }
+                } else {
+                    for (var i = 0; i < divStars.children.length; i++) {
+                        divStars.children[i].src = graystarImagePath;
+                    }
+                }
+                
+            </script> 
+        {% endfor %}
+
+        {% comment %} 動態編輯留言星星 {% endcomment %}
+         <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const editButtons = document.querySelectorAll('.comment-edit-btn');
+                const starBoxs = document.querySelectorAll('.star-box');
+                const commentTexts = document.querySelectorAll('.comment-text');
+                const editForms = document.querySelectorAll('.comment-edit-form');
+                /*const saveButtons = document.querySelectorAll('.comment-save-btn');*/
+                const cancelButtons = document.querySelectorAll('.comment-cancel-save-btn');
+        
+                function toggleCommentEdit(starbox, commentText, form) {
+                    if (commentText.style.display === 'none') {
+                        starbox.style.display = 'block';
+                        commentText.style.display = 'block';
+                        form.style.display = 'none';
+                    } else {
+                        starbox.style.display = 'none';
+                        commentText.style.display = 'none';
+                        form.style.display = 'block';
+                    }
+                }
+
+                editButtons.forEach((editButton, index) => {
+                    editButton.addEventListener('click', () => {
+                        const formId = editButton.getAttribute('data-form-id');
+                        const commentId = formId.split('-')[2];
+                        const form = document.querySelector(`#${formId}`);
+                        const commentText = document.querySelector(`#comment-text-${commentId}`);
+                        const starbox = document.querySelector(`#stars-${commentId}`);
+                        console.log('commentText:', commentText);
+                        console.log('starbox:', starbox);
+                        console.log('form:', form);
+                        toggleCommentEdit(starbox,commentText, form);
+
+
+                        /*插入這裡*/
+                        var divStars = document.getElementById(`edit-stars-${commentId}`);
+                        var starNumInput = document.getElementById(`id_star_num-${commentId}`);
+                        var starFixedNum = document.getElementById(`fixed-id_star_num-${commentId}`);
+                        var star_num = parseInt(starFixedNum.value); // 将字符串转换为整数
+                        var starArray = Array.from(divStars.children);
+                        var starImagePath = "{% static 'store/images/star.png' %}";
+                        var graystarImagePath = "{% static 'store/images/star-gray.png' %}";
+
+                        
+                        divStars.onmouseover = function(e) {
+                            if (e.target.tagName === "IMG") { //事件源是圖片
+                                //把滑鼠移動到的星星替換圖片
+                                e.target.src = starImagePath;
+                                //把滑鼠移動到的星星之前的星星替換圖片
+                                var prev = e.target.previousElementSibling;
+                                while (prev) {
+                                    prev.src = starImagePath;
+                                    prev = prev.previousElementSibling;
+                                }
+                                //把滑鼠移動到的星星之後的星星替換圖片
+                                var next = e.target.nextElementSibling;
+                                while (next) { //把滑鼠移動到的星星之後的星星替換圖片
+                                    next.src = graystarImagePath;
+                                    next = next.nextElementSibling;
+                                }
+                
+                                var index = starArray.indexOf(e.target); //找到滑鼠移動到的星星的序號
+                            }
+                        }
+
+                        //滑鼠點擊
+                        divStars.onclick = function(e) {
+                            if (e.target.tagName === "IMG") {
+                                //記錄當前點擊的星星序號
+                                star_num = starArray.indexOf(e.target);
+                                starNumInput.value = star_num;
+                                console.log('starArray:', starArray.indexOf(e.target));
+                                console.log('star_num:', star_num);
+                                console.log('starNumInput:', starNumInput.value);
+                            }
+                        }
+                        
+                        
+                        divStars.onmouseout = function(e) {
+                            if (star_num !== -1) { //滑鼠點擊事件發生，將評分固定在點擊的星星上
+                                for (var i = 0; i < divStars.children.length; i++) {
+                                    if (i <= star_num) {
+                                        divStars.children[i].src = starImagePath;
+                
+                                    } else {
+                                        divStars.children[i].src = graystarImagePath;
+                                    }
+                                }
+                            } else {
+                                for (var i = 0; i < divStars.children.length; i++) {
+                                    divStars.children[i].src = graystarImagePath;
+                                }
+                            }
+                        } 
+                        
+                        
+                    });
+                });
+        
+                cancelButtons.forEach((cancelButton, index) => {
+                    cancelButton.addEventListener('click', () => {
+                        const formId = cancelButton.getAttribute('data-form-id');
+                        const commentId = formId.split('-')[2];
+                        const form = document.querySelector(`#${formId}`);
+                        const commentText = document.querySelector(`#comment-text-${commentId}`);
+                        const starbox = document.querySelector(`#stars-${commentId}`);
+                        console.log('commentText:', commentText);
+                        console.log('starbox:', starbox);
+                        console.log('form:', form);
+                        toggleCommentEdit(starbox, commentText, form);
+                        
+                    });
+                });
+            });
+        </script>
+    </ul>
+    
+    {% if user.is_authenticated %}
+    <div class="product-user-comment">
+        <form action="{% url "add_comment" product.slug %}" method="POST" id="comment-form">
+            {% csrf_token %}
+
+            <div id="stars" class="user-comment-star-box">
+                商品評價：
+                <img class="user-star" src="{% static "store/images/star-gray.png" %}">
+                <img class="user-star" src="{% static "store/images/star-gray.png" %}">
+                <img class="user-star" src="{% static "store/images/star-gray.png" %}">
+                <img class="user-star" src="{% static "store/images/star-gray.png" %}">
+                <img class="user-star" src="{% static "store/images/star-gray.png" %}">
+            </div>
+            
+        
+            {% for form in forms %}
+            <div class="form-control {% if form_field.errors %}invalid{% endif %}">
+                {{ form }}
+                {{ form.errors }}
+            </div>
+            {% endfor %}
+            <button>送出</button>
+        </form>
+
+        {% comment %} 動態星星 {% endcomment %}
+        <script>
+            //製作一個星星評分
+            var divStars = document.getElementById("stars");
+            var divComment = document.getElementById("comment");
+            var attitude = ["差", "較差", "一般", "好", "很好"];
+            var star_num = -1; //記錄當前第幾顆星星被點擊 init = -1
+            var starNumInput = document.getElementById("id_star_num");
+            var starArray = Array.from(divStars.children); //星星數組
+            
+            var starImagePath = "{% static "store/images/star.png" %}";
+            var graystarImagePath = "{% static "store/images/star-gray.png" %}";
+
+            divStars.onmouseover = function(e) {
+                if (e.target.tagName === "IMG") { //事件源是圖片
+                    //把滑鼠移動到的星星替換圖片
+                    e.target.src = starImagePath;
+                    //把滑鼠移動到的星星之前的星星替換圖片
+                    var prev = e.target.previousElementSibling;
+                    while (prev) {
+                        prev.src = starImagePath;
+                        prev = prev.previousElementSibling;
+                    }
+                    //把滑鼠移動到的星星之後的星星替換圖片
+                    var next = e.target.nextElementSibling;
+                    while (next) { //把滑鼠移動到的星星之後的星星替換圖片
+                        next.src = graystarImagePath;
+                        next = next.nextElementSibling;
+                    }
+    
+                    var index = starArray.indexOf(e.target); //找到滑鼠移動到的星星的序號
+                }
+            }
+
+            //滑鼠點擊
+            divStars.onclick = function(e) {
+                if (e.target.tagName === "IMG") {
+                    //記錄當前點擊的星星序號
+                    star_num = starArray.indexOf(e.target);
+                    starNumInput.value = star_num;
+                }
+            }
+            
+            divStars.onmouseout = function(e) {
+                if (star_num !== -1) { //滑鼠點擊事件發生，將評分固定在點擊的星星上
+                    for (var i = 0; i < divStars.children.length; i++) {
+                        if (i <= star_num) {
+                            divStars.children[i].src = starImagePath;
+    
+                        } else {
+                            divStars.children[i].src = graystarImagePath;
+                        }
+                    }
+                } else {
+                    for (var i = 0; i < divStars.children.length; i++) {
+                        divStars.children[i].src = graystarImagePath;
+                    }
+                }
+            }
+        </script>
+    </div>
+
+    {% endif %}
+</section>

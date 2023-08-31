@@ -1,0 +1,171 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.header {
+    Position: fixed;
+    top: 0;
+    background-color: #CE121E;
+    background: linear-gradient(#DB1321, #CE121E);
+    height: 125px;
+    width: 100%;
+}
+
+.header-logo {
+    position: fixed;
+    border: 0px solid #000;
+    height: 65px;
+    width: 150px;
+    margin-top: 30px;
+    margin-left: 10%;
+    float: left;
+    background-image: url('images/header-logo.png');
+    background-size: 150px;
+    background-size: cover;
+}
+
+.search-div {
+    position: fixed;
+    border: 0px #000 solid;
+    background-color: white;
+    margin-top: 42px;
+    float: left;
+    margin-left: calc(150px + 12%);
+    height: 50px;
+    width: calc(62% - 125px);
+    /*760px*/
+    border-radius: 5px;
+}
+
+.search-box {
+    background-color: white;
+    border: 0px #000 solid;
+    padding-left: 15px;
+    font-size: 12pt;
+    height: 50px;
+    width: calc(100% - 100px);
+    outline: none;
+    float: left;
+    border-radius: 10px 0px 0px 10px;
+}
+
+.search-btn {
+    position: absolute;
+    border: #fff 6px solid;
+    background-color: #CE121E;
+    height: 50px;
+    width: 80px;
+    outline: none;
+    float: left;
+    cursor: pointer;
+    border-radius: 10px;
+    background-image: url('images/search.png');
+    background-repeat: no-repeat;
+    background-size: 25px;
+    background-position: center;
+    margin-left: 15px;
+}
+
+.search-btn:hover {
+    background-color: #DB1321;
+}
+
+.cart-div {
+    position: fixed;
+    margin-top: 45px;
+    margin-left: calc(76% + 30px);
+    background-color: inherit;
+    border: #fff 0px solid;
+    float: left;
+    height: 50px;
+    outline: none;
+    width: 50px;
+    cursor: pointer;
+    background-image: url('images/cart-white.png');
+    background-size: cover;
+}
+
+.cart-div:hover {
+    background-image: url('images/cart-yellow.png');
+    background-size: cover;
+    margin-top: 41px;
+}
+
+.like-div {
+    position: fixed;
+    margin-top: 45px;
+    margin-left: calc(78% + 90px);
+    background-color: inherit;
+    border: #fff 0px solid;
+    float: left;
+    height: 50px;
+    outline: none;
+    width: 50px;
+    cursor: pointer;
+    background-image: url('images/like-white.png');
+    background-size: cover
+}
+
+.like-div:hover {
+    background-image: url('images/like-yellow.png');
+    background-size: cover;
+    margin-top: 41px;
+}
+
+.user-div {
+    border: #fff 0px solid;
+    height: 35px;
+    width: 250px;
+    float: right;
+    margin-top: 10px;
+    margin-right: 15px;
+    color: white;
+    font-size: 14px;
+}
+
+.user-btn {
+    border: 0 none;
+    border: #fff 0px solid;
+    height: 25px;
+    width: 25px;
+    /* background-color: #fff; */
+    float: right;
+    border-radius: 100%;
+    margin-top: 2px;
+    margin-right: 7px;
+    /* cursor: pointer; */
+    background-repeat: no-repeat;
+    background-size: 25px;
+    /* background-position: 2.5px; */
+    background-image: url('images/user.png');
+}
+
+.user-text {
+    border: #ccc 0px solid;
+    color: white;
+    float: right;
+    font-size: 14px;
+    /* margin-top: -24px;
+    margin-right: 15px; */
+    margin-top: 5px;
+    font-family: 'Microsoft JhengHe';
+    font-weight: bolder;
+}
+
+.user-text a {
+    text-decoration: none;
+    color: #fff;
+    font-family: '微軟正黑體';
+    font-weight: bold;
+}
+
+.user-text a:hover {
+    color: yellow;
+}
+
+.vert-line {
+    border-left: 1px solid #fff;
+    margin-right: 5px;
+    margin-left: 3px;
+}

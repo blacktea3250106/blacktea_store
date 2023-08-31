@@ -1,0 +1,27 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% block css_files %}
+    <link rel="icon" type="icon" href="{% static "store/images/logo.png" %}">
+    <link rel="stylesheet" href="{% static "store/404.css" %}"/>
+
+    {% endblock %}
+
+    <title>404 Page Not Found</title>
+</head>
+<body>
+
+    <div class="container">
+        <h1>404 Page Not Found</h1>
+        <p>Oops! The page you're looking for doesn't exist.</p>
+        {% comment %} <p><a href="/">Go back to the homepage</a></p> {% endcomment %}
+        <a href="{% url "index" %}">
+            <button class='index-btn'>回首頁</button>
+        </a>
+    </div>
+
+</body>
+</html>

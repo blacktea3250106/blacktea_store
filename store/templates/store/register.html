@@ -1,0 +1,97 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    {% block css_files %}
+    <link rel="icon" type="icon" href="{% static "store/images/logo.png" %}">
+    <link rel="stylesheet" href="{% static "store/register.css" %}"/>
+    <link rel="stylesheet" href="{% static "store/carousel.css" %}"/>
+    {% endblock %}
+    
+    <title>
+        BlackTeaStore 註冊會員
+    </title>
+</head>
+<body>
+    <div class='header'>
+        <a href="{% url "index" %}">
+            <div class='header-logo'></div>
+        </a>
+        <div class='header-text'>註冊會員</div>
+    </div>
+
+    {% include "store/carousel.html" %}
+
+    {% block content %}
+    <div class='content'>
+        
+
+    
+        <form method="POST" id="register-form">
+            <span>註冊</span>
+            {% csrf_token %}
+
+            {% comment %} <div class="errorlist">
+                <div class="errorlist-img"></div>
+                <div class='errorlist-text'>帳號或密碼錯誤，請再試一次</div>
+            </div> {% endcomment %}
+
+            {% if forms.errors %}
+                <div class="errorlist">
+                    <div class="errorlist-img"></div>
+                    <div class='errorlist-text' contenteditable="true">
+                        {% for field, errors in forms.errors.items %}
+                            {% for error in errors %}
+                                {{ error }}
+                            {% endfor %}
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+            
+            
+            {% for form in forms %}
+            <div class="form-control {% if form.errors %}invalid{% endif %}">
+                {{ form }}
+                {% comment %} {{ form.errors }}  {% endcomment %}
+                {% if form.errors %}
+                    
+                {% endif %}
+            </div>
+            {% endfor %} 
+            {% comment %} {{ forms }} {% endcomment %}
+
+            <button type="submit">註冊</button>
+            {% comment %} <div class='form-or'>或</div>
+
+            <div class='form-other'>
+                <a href="https://www.facebook.com/">
+                    <div class="form-fb-signup"></div>
+                </a>
+                <a href="https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Faccounts.google.com%2F&followup=https%3A%2F%2Faccounts.google.com%2F&ifkv=AXo7B7XI4wEmpVy7I_X-bi_66MhdxPB7ygUSf4fnjjvuH6UIa_feT8kaCCrBLEUOUAa6fWJs4kAd&passive=1209600&flowName=GlifWebSignIn&flowEntry=ServiceLogin&dsh=S772683682%3A1691261831065975">
+                    <div class="form-gg-signup"></div>
+                </a>
+            </div> {% endcomment %}
+            {% comment %} <div class='form-or'>其他</div> {% endcomment %}
+            
+            <div class='form-login'>已經是會員了嗎? <a href="{% url 'login' %}">點我登入</a></div>
+            <div class='form-check'>註冊即代表您同意遵守<a href="">紅茶商城會員協議</a></div>
+          </form>
+    </div>
+    {% endblock content %}
+
+    {% include "store/footer.html" %}
+
+    <style>
+        .footer {
+            bottom: 0px;
+            background-color: #35363A;
+            height: 150px;
+            width: 1903px;
+        }
+    </style>
+</body>
+</html>

@@ -1,0 +1,176 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    {% block css_files %}
+    <link rel="icon" type="icon" href="{% static "store/images/logo.png" %}">
+    <link rel="stylesheet" href="{% static "store/product.css" %}"/>
+    <link rel="stylesheet" href="{% static "store/comment.css" %}"/>
+    {% endblock %}
+
+    {% block js_files %}
+    <script src="{% static 'store/quantity.js' %}"></script>
+    <script src="{% static 'store/add_cart.js' %}"></script>
+    <script src="{% static 'store/delete_comment.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    {% endblock %}
+    
+    <title>
+        BlackTeaStore 紅茶商城
+    </title>
+</head>
+
+<body>
+    {% include "store/header.html" %}
+   
+    {% block product_content %}
+        <div class='product-content'>
+            <div class='product'>
+                <img class="product-img" src={{ product.image.url }} alt={{ product.name }}>
+            </div>
+            
+            <div class='product-detail'>
+                <div class='product-group'>
+                    <label class='product-title'>{{ product.name }}</label>
+                </div>
+                <div class='product-group'>
+                    <div class='product-price'>
+                        <span class='product-price-hide' style='display: none;'>{{ product.price }}</span>
+                        <span class='product-price-title'>{{ product.formatted_price }}</span>
+                        <div class='product-tags'>
+                            <div class='tag'>九折</div>
+                            <div class='tag'>免運</div>
+                        </div>
+                    </div>
+                </div>
+                <div class='product-group'>
+                    <label class='product-label'>顏色</label>
+                    {% for color in product.style_color.all %}
+                        <div class='product-options'>
+                            <button class='product-btn color-btn'>{{ color.name }}</button>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class='product-group'>
+                    <label class='product-label'>容量</label>
+                    {% for capacity in style_capacity %}
+                        <div class='product-options'>
+                            <button class='product-btn capacity-btn'>{{ capacity.name }}</button>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class='product-group'>
+                    <label class='product-label'>數量</label>
+                    <div class='product-options'>
+                        <button class='quantity-btn' onclick='sub()' value='-'>-</button>
+                        <input type='text' id='volume_box' class='quantity-box' value='1' oninput='updateTotal()' onkeydown="filterNonNumericKey(event)">
+                        <button class='quantity-btn' onclick='add()' value='+'>+</button>
+                        {% comment %} &nbsp;&nbsp;還剩999件 {% endcomment %}
+                    </div>
+                </div>
+
+                <script>
+                    function filterNonNumericKey(event) {
+                        // 获取按下的键的字符编码
+                        const keyCode = event.which || event.keyCode;
+                
+                        // 允许的键：数字键（48-57），小键盘数字键（96-105），退格键（8）、删除键（46）和方向键（37-40）
+                        if (!((keyCode >= 48 && keyCode <= 57) || (keyCode >= 96 && keyCode <= 105) || keyCode === 8 || keyCode === 46 || (keyCode >= 37 && keyCode <= 40))) {
+                            event.preventDefault();
+                        }
+                    }
+                </script>
+                
+                <div class='product-group'>
+                    <hr>
+                    <button class='product-wide-btn'>直接購買</button>
+                    <button class='product-wide-btn' id='add-to-cart' data-product="{{ product}}">加入購物車</button>
+                    <button class='product-wide-btn' id='add-to-favorites'>加入收藏區</button>
+                </div>
+
+                <script>
+                    const addToFavoritesButton = document.getElementById('add-to-favorites');
+
+                    addToFavoritesButton.addEventListener('click', () => {
+                        Swal.fire({
+                            icon: 'info',
+                            title: '此功能尚未開放',
+                            html: '讓我們敬請期待',
+                            showCloseButton: true,
+                            showCancelButton: false,
+                            focusConfirm: false,
+                            showCloseButton: false,  
+                        });
+                    });
+                </script>
+            </div>
+        </div>
+        
+    {% endblock %}
+
+    {% block product_info_content %}
+    <div class='product-info-content'>
+        <div class='product-info-title'>商品資訊</div>
+        <div class='product-info-group'>
+            {% for content in contents %}
+                <div class='info-group'>
+                    {{ content | linebreaks }}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endblock %}
+
+    {% block product_comment %}
+    <div class='product-comment'>
+        <div class='product-comment-title'>商品評論</div>
+        {% include "store/comment.html" %}
+        
+    </div>
+    {% endblock %}
+
+
+    {% block related_products %}
+    <div class='product-info-content'>
+        <div class='product-info-title'>相關商品</div>
+
+        {% for product in related_products %}
+            
+        <div class='related-products'>
+            <a href={{ product.get_absolute_url }}>
+
+                <div class='related-product-image'>
+                    <img src={{ product.image.url }} alt={{ product.name }} width='176px'>
+                </div>
+
+                <span class='related-product-name'>{{ product.name }}</span>
+                
+                <div class='related-product-tags'>
+                    {{ product.formatted_price }}
+                    <div class='related-tag'>九折</div>
+                    <div class='related-tag'>免運</div>
+                </div>
+                
+            </a>
+        </div>
+        
+        {% endfor %}
+        </div>
+    </div>
+    {% endblock %}
+
+    {% include "store/footer.html" %}
+    <style>
+        .footer {
+            bottom: 0px;
+            background-color: #35363A;
+            height: 150px;
+            width: 1903px;
+        }
+    </style>
+</body>
+</html>

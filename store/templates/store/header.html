@@ -1,0 +1,102 @@
+{% load static %}
+
+{% block css_files %}
+<link rel="icon" type="icon" href="{% static "store/images/logo.png" %}">
+<link rel="stylesheet" href="{% static "store/header.css" %}"/>
+{% endblock  %}
+
+{% block js_files %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+{% endblock %}
+
+<div class='header'>
+    <a href="{% url "index" %}">
+        <div class='header-logo'></div>
+    </a>
+
+    <div class='search-div'>
+        <form action="{% url 'index' %}" method="get" >
+            <input class='search-box' type="text"  name="q" value="{{ search_query }}" placeholder="就是現在！即日起到10/15全館打九折免運費！">
+            <button class='search-btn' type="submit"></button>
+        </form>
+    </div>
+    {% if user.is_authenticated %}
+        <a href="{% url "cart" %}"><div class='cart-div'></div></a>
+    {% else %}
+        <div class='cart-div' id="show-cart-no-member"></div></a>
+    {% endif %}
+
+    <script>
+        const showCartNoMember = document.getElementById('show-cart-no-member');
+
+        showCartNoMember.addEventListener('click', () => {
+            Swal.fire({
+                icon: 'info',
+                title: '尚未登入會員',
+                html: '會員才能使用購物車哦！',
+                showCloseButton: true,
+                showCancelButton: false,
+                focusConfirm: false,
+                showCloseButton: false,
+            });
+        });
+    </script>
+
+    
+
+    <div class='like-div' id='add-to-favorites-div'></div>
+
+    <script>
+        const addToFavoritesDiv = document.getElementById('add-to-favorites-div');
+
+        addToFavoritesDiv.addEventListener('click', () => {
+            Swal.fire({
+                icon: 'info',
+                title: '此功能尚未開放',
+                html: '讓我們敬請期待',
+                showCloseButton: true,
+                showCancelButton: false,
+                focusConfirm: false,
+                showCloseButton: false,  
+            });
+        });
+    </script>
+    
+    <div class='user-div'>
+
+        
+        
+        <div class='user-text'>
+            
+            {% if request.user.is_authenticated  %}
+
+                <a href="" style="white-space: nowrap;">{{request.user}}</a>
+                <span class='vert-line'></span>
+                <a id="logout" href="{% url "logout" %}">登出</a>
+
+            {% else %}
+                <a href="{% url "register" %}">註冊</a>
+                <span class='vert-line'></span>
+                <a href="{% url "login" %}">登入</a>            
+            {% endif %}
+
+            <script>
+                document.getElementById('logout').addEventListener('click', function(event) {
+                    event.preventDefault(); // 防止預設的提交行為
+            
+                    Swal.fire({
+                        icon: 'success',
+                        title: '登出成功！',
+                        timer: 1000,
+                        showConfirmButton: false,
+                    }).then(() => {
+                        window.location.href = '{% url "logout" %}'; // 跳轉到登出頁面
+                    });
+                });
+            </script>
+            
+        </div>
+
+        <button class='user-btn' type="button" onclick=""></button>
+    </div>
+</div>

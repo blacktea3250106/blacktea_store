@@ -1,0 +1,115 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    {% block css_files %}
+    <link rel="icon" type="icon" href="{% static "store/images/logo.png" %}">
+    <link rel="stylesheet" href="{% static "store/register.css" %}"/>
+    <link rel="stylesheet" href="{% static "store/cart.css" %}"/>
+    <link rel="stylesheet" href="{% static "store/footer.css" %}"/>
+
+    {% endblock %}
+
+    {% block js_files %}
+    <script src="{% static 'store/quantity_cart.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{% static 'store/delete_cart_item.js' %}"></script>
+    <script src="{% static 'store/checkbox_cart.js' %}"></script>
+    {% endblock %}
+    
+    <title>
+        BlackTeaStore 購物車
+    </title>
+</head>
+<body>
+    <div class='header'>
+        <a href="{% url "index" %}">
+            <div class='header-logo'></div>
+        </a>
+        <div class='header-text'>購物車</div>
+    </div>
+
+    {% block content %}
+    <div class='cart-content'>
+        <div class="cart-field">
+            <input type="checkbox" class="cart-field-checkbox" data-cart-id="all-check">
+            <div class="cart-field-name">商品</div>
+            <div class="cart-field-color">顏色</div>
+            <div class="cart-field-capacity">容量</div>
+            <div class="cart-field-price">價格</div>
+            <div class="cart-field-volume">數量</div>
+            <div class="cart-field-total">總計</div>
+            <div class="cart-field-remove">刪除</div>
+        </div>
+
+       {% for cart_item in cart_items %}
+            <div class="cart-product" data-cart-id="{{ cart_item.id }}">
+                <input type="checkbox" class="product-checkbox" data-cart-id="{{ cart_item.id }}">
+                <a href={{ cart_item.product.get_absolute_url }}>
+                    <img class="product-img" src={{ cart_item.product.image.url }} alt={{ cart_item.product.name }}>
+                </a>
+                <div class="product-name">{{ cart_item.product.name|safe}}</div>
+                <div class="product-color">{{ cart_item.style_color.all|join:", " }}</div>
+                <div class="product-capacity">{{ cart_item.style_capacity.all|join:", " }}</div>
+                <div class="product-price">{{ cart_item.product.formatted_price }}</div>
+                
+
+                <button class="quantity-btn" data-cart-id="{{ cart_item.id }}" value="-">-</button>
+
+                <input type="text" id="volume_box-{{ cart_item.id }}" class="quantity-box" 
+                value="{{ cart_item.volume }}" 
+                oninput="updateTotal('{{ cart_item.id }}')" 
+                onkeydown="filterNonNumericKey(event)">
+                
+                <button class="quantity-btn" data-cart-id="{{ cart_item.id }}" value="+">+</button>
+                
+
+                <div class="product-total">{{ cart_item.formatted_price }}</div>
+                <button class="product-delete-btn" data-cart-id="{{ cart_item.id }}"></button>
+            </div>
+        {% endfor %}
+
+        <script>
+            function filterNonNumericKey(event) {
+                // 获取按下的键的字符编码
+                const keyCode = event.which || event.keyCode;
+        
+                // 允许的键：数字键（48-57），小键盘数字键（96-105），退格键（8）、删除键（46）和方向键（37-40）
+                if (!((keyCode >= 48 && keyCode <= 57) || (keyCode >= 96 && keyCode <= 105) || keyCode === 8 || keyCode === 46 || (keyCode >= 37 && keyCode <= 40))) {
+                    event.preventDefault();
+                }
+            }
+        </script>
+
+        
+
+
+        
+        
+        <div class="checkout-field">
+            <input type="checkbox" class="checkout-checkbox" data-cart-id="checkout-check" disabled>
+            <div class="checkout-choose">選擇(<span class="selected-items-count">0</span>項商品)</div>
+            <div class="checkout-total">總計：<span class="total-amount">NT$ 0</span></div>
+            <button class='checkout-btn'>結帳去</button>
+        </div>
+
+        
+        
+        
+    </div>
+    {% endblock content %}
+
+    {% include "store/footer.html" %}
+    <style>
+        .footer {
+            bottom: 0px;
+            background-color: #35363A;
+            height: 150px;
+            width: 1903px;
+        }
+    </style>
+</body>
+</html>

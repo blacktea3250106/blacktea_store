@@ -1,0 +1,115 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    {% block css_files %}
+    <link rel="icon" type="icon" href="{% static "store/images/logo.png" %}">
+    <link rel="stylesheet" href="{% static "store/header.css" %}"/>
+    <link rel="stylesheet" href="{% static "store/footer.css" %}"/>
+    <link rel="stylesheet" href="{% static "store/index.css" %}"/>
+    {% endblock %}
+    
+    <title>
+        {% block title %}
+        BlackTeaStore 紅茶商城
+        {% endblock %}
+    </title>
+</head>
+
+<body>
+    {% include "store/header.html" %}
+
+    {% block content %}
+    <div class='content'>
+        {% for product in products %}
+            
+            <div class='product'>
+                <a href={{ product.get_absolute_url }}>
+
+                    <div class='product-image'>
+                        <img src={{ product.image.url }} alt={{ product.name }} width='220px'>
+                    </div>
+
+                    <span class='product-name'>{{ product.name }}</span>
+                    
+                    <div class='product-tags'>
+                        {{ product.formatted_price }}
+                        <div class='tag'>九折</div>
+                        <div class='tag'>免運</div>
+                    </div>
+                    
+                </a>
+                
+                <div class='pop-up'>
+                    {% if user.is_authenticated %}
+                        <a href="{% url "cart" %}"><div class='cart'>&nbsp;</div></a>
+                    {% else %}
+                        <div class='cart' data-product-id='{{ product.id }}' id="add-to-cart-{{ product.id }}"> &nbsp;</div>
+                    {% endif %}
+                    <div class='like' data-product-id='{{ product.id }}' id="add-to-favorites-{{ product.id }}"> &nbsp;</div>
+                </div>
+
+
+
+            </div>
+            
+        {% endfor %}
+
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const likeButtons = document.querySelectorAll('.like');
+                
+                likeButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        Swal.fire({
+                            icon: 'info',
+                            title: '此功能尚未開放',
+                            html: '讓我們敬請期待',
+                            showCloseButton: true,
+                            showCancelButton: false,
+                            focusConfirm: false,
+                            showCloseButton: false,
+                        });
+                    });
+                });
+        
+                const cartButtons = document.querySelectorAll('.cart');
+                cartButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        {% if not user.is_authenticated %}
+                            const productItemId = button.getAttribute('data-product-id');
+                            Swal.fire({
+                                icon: 'info',
+                                title: '尚未登入會員',
+                                html: '會員才能使用購物車哦！',
+                                showCloseButton: true,
+                                showCancelButton: false,
+                                focusConfirm: false,
+                                showCloseButton: false,
+                            });
+                        {% else %}
+                            // 如果會員已登入，這裡可以添加直接跳轉到購物車的功能
+                            window.location.href = "{% url 'cart' %}";
+                        {% endif %}
+                    });
+                });
+            });
+        </script>
+        </div>
+    {% endblock %}
+
+    {% include "store/footer.html" %}
+</body>
+</html>
+
+
+
+
+
+
+
+
+

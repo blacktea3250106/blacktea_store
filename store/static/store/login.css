@@ -1,0 +1,268 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.header {
+    top: 0;
+    background: linear-gradient(#DB1321, #CE121E);
+    background-color: #000;
+    height: 125px;
+    width: 1903px;
+    font-size: 30px;
+}
+
+.header-logo {
+    border: 0px solid #fff;
+    height: 65px;
+    width: 150px;
+    margin-top: 30px;
+    margin-left: 10%;
+    float: left;
+    background-image: url('images/header-logo.png');
+    background-size: 150px;
+    background-size: cover;
+}
+
+.header-text {
+    border: 0px solid #fff;
+    float: right;
+    margin-top: 30px;
+    margin-right: calc(58% - 200px);
+    height: 65px;
+    width: 165px;
+    font-size: 32px;
+    font-family: '微軟正黑體';
+    font-weight: bold;
+    color: white;
+    line-height: 65px;
+    text-align: center;
+}
+
+.content {
+    border: #000 0px solid;
+    width: 100%;
+    margin: 0px auto;
+    height: 666px;
+    background-color: #fff;
+}
+
+
+/*------ Member Register Form -----*/
+
+#login-form {
+    position: relative;
+    margin: 3rem auto;
+    width: 300px;
+    height: 524px;
+    border-radius: 3px;
+    background-color: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    padding: 40px;
+    margin-left: 1150px;
+    margin-top: -605px;
+}
+
+#login-form span {
+    font-size: 26px;
+    font-family: '微軟正黑體';
+    margin-bottom: 15px;
+    border: 0px #000 solid;
+}
+
+#login-form button {
+    font: inherit;
+    background-color: #DB1321;
+    color: white;
+    border: 1px solid #DB1321;
+    padding: 0.5rem 1.5rem;
+    border-radius: 6px;
+    width: 100%;
+    height: 40px;
+    cursor: pointer;
+    margin-top: 36px;
+}
+
+#login-form button:hover,
+#login-form button:active {
+    background-color: #CE121E;
+    border-color: #CE121E;
+}
+
+.form-control {
+    border: #000 0px solid;
+    margin-top: 2.3rem;
+    /* margin-bottom: 0.5rem; */
+    text-decoration: none;
+    font-family: '微軟正黑體';
+}
+
+.form-control label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.form-control input {
+    display: block;
+    width: 100%;
+    height: 40px;
+    font: inherit;
+    padding: 0.25rem;
+    border-radius: 2px;
+    padding-left: 7px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    /* line-height: 20px; */
+}
+
+.errorlist {
+    width: 100%;
+    height: 35px;
+    border: #d6000b 1px solid;
+    border: 1px solid rgba(255, 66, 79, .2);
+    list-style: none;
+    padding: 0;
+    line-height: 35px;
+    margin-top: 20px;
+    margin-bottom: -5px;
+    background-color: #ffe6e7;
+}
+
+.errorlist-img {
+    background-image: url('images/error.png');
+    background-repeat: no-repeat;
+    background-size: 18px;
+    border: #000 0px solid;
+    height: 18px;
+    width: 18px;
+    margin-top: 8px;
+    margin-left: 14px;
+}
+
+.errorlist-text {
+    border: 0px solid #000;
+    color: #E61E1E;
+    font-size: 14px;
+    font-weight: bold;
+    float: left;
+    margin-left: 40px;
+    margin-top: -26px;
+}
+
+.invalid label {
+    color: #d6000b;
+}
+
+
+/* .invalid input,
+.invalid textarea {
+    border-color: #d6000b;
+    background-color: #ffe6e7;
+} */
+
+.form-forgot-password,
+.form-forgot-password a {
+    border: #000 0px solid;
+    margin-top: 28px;
+    margin-right: 2px;
+    text-align: center;
+    color: gray;
+    font-size: 14px;
+}
+
+.form-forgot-password a:hover {
+    color: #d6000b;
+}
+
+
+/* or line */
+
+.form-or {
+    border: #000 0px solid;
+    margin-top: 10px;
+    text-align: center;
+    position: relative;
+    line-height: 50px;
+    font-size: 14px;
+    color: #ccc;
+}
+
+.form-or:after,
+.form-or:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    background: #ccc;
+    height: 1px;
+    width: 42%;
+}
+
+.form-or:after {
+    left: 5px;
+}
+
+.form-or:before {
+    right: 5px;
+}
+
+.form-other {
+    border: #000 0px solid;
+    height: 40px;
+    width: 100%;
+    /* display: flex;
+    justify-content: space-between; */
+}
+
+.form-other {
+    padding: 0;
+    margin: 0;
+}
+
+.form-fb-signup,
+.form-gg-signup {
+    float: left;
+    border: #ccc 1px solid;
+    width: 48%;
+    height: 100%;
+    margin-left: 4px;
+}
+
+.form-fb-signup {
+    background-image: url('images/fb.png');
+    background-size: cover;
+}
+
+.form-gg-signup {
+    background-image: url('images/gg.png');
+    background-size: cover;
+}
+
+.form-fb-signup:hover,
+.form-gg-signup:hover {
+    cursor: pointer;
+}
+
+.form-check,
+.form-check a {
+    margin-top: 16px;
+    text-align: center;
+    color: gray;
+    font-size: 12px;
+}
+
+.form-check a:hover {
+    color: #d6000b
+}
+
+.form-login,
+.form-login a {
+    margin-top: 16px;
+    text-align: center;
+    color: gray;
+    font-size: 14px;
+}
+
+.form-login a:hover {
+    color: #d6000b
+}

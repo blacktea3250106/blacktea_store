@@ -1,0 +1,298 @@
+.star-box {
+    font-size: 16px;
+    margin-top: 7px;
+    margin-bottom: 7px;
+    border: #000 0px solid;
+}
+
+.star {
+    max-width: 16px;
+    background-image: url("images/star-gray.png");
+}
+
+#comments {
+    margin: 3rem auto;
+    width: 80%;
+    max-width: 60rem;
+    min-height: 100px;
+    border-radius: 6px;
+    background-color: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    padding: 1rem 2rem;
+    font-family: 'Open Sans', 'Lato', sans-serif;
+    border: 0px #000 solid;
+}
+
+#comments ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#comments li {
+    margin-top: 20px;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #ccc;
+}
+
+#comments li:last-of-type {
+    border-bottom: none;
+}
+
+#comments h4 {
+    color: #464646;
+}
+
+#comments p {
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.comment-text {
+    border: #000 0px solid;
+    width: 35%;
+}
+
+.comment-edit-star-box {
+    width: 328px;
+    margin: 0 auto;
+    height: 45px;
+    background-color: white;
+    border: 1px solid #555;
+    font-size: 14px;
+    font-weight: bold;
+    color: #464646;
+    border-radius: 1px;
+    margin-left: 0px;
+    padding: 0 10px;
+}
+
+.comment-cancel-save-btn {
+    height: 35px;
+    font-size: 14px;
+    color: white;
+    border: 1px #ddd solid;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 5px;
+    text-align: center;
+    margin-top: -95px;
+    background-color: #2F5597;
+    padding: 0 10px;
+    float: right;
+    margin-right: 0;
+}
+
+.comment-cancel-save-btn:hover {
+    background-color: #203864;
+}
+
+.comment-save-btn {
+    height: 35px;
+    font-size: 14px;
+    color: white;
+    border: 1px #ddd solid;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 5px;
+    text-align: center;
+    margin-top: -54px;
+    background-color: #CE121E;
+    padding: 0 10px;
+    float: right;
+    margin-right: 0;
+}
+
+.comment-save-btn:hover {
+    background-color: #C00000
+}
+
+.comment-btn-box {
+    margin: 10px;
+    border: 0px #000 solid;
+    float: right;
+    height: 108px;
+    width: 50px;
+    margin-top: 0px;
+}
+
+.comment-edit-btn {
+    background-image: url(images/edit.png);
+    border: #000 0px solid;
+    height: 25px;
+    width: 25px;
+    background-repeat: no-repeat;
+    background-size: 25px;
+    margin-left: 25px;
+}
+
+.comment-edit-btn:hover {
+    cursor: pointer;
+    background-image: url(images/edit2.png);
+}
+
+.comment-delete-btn {
+    margin-top: 10px;
+    background-image: url(images/delete.png);
+    border: #000 0px solid;
+    height: 25px;
+    width: 25px;
+    background-repeat: no-repeat;
+    background-size: 25px;
+    margin-left: 25px;
+}
+
+.comment-delete-btn:hover {
+    cursor: pointer;
+    background-image: url(images/delete2.png);
+}
+
+.comment-edit-form {
+    display: none;
+}
+
+.comment-edit-form-back {
+    margin: 1rem 0;
+    width: 350px;
+    max-width: 60rem;
+    border-radius: 3px;
+    background-color: #ddd;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.comment-edit-form textarea {
+    width: 350px;
+    height: 150px;
+    font-size: 14px;
+    margin-top: 10px;
+    padding: 10px;
+    resize: none;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    font-family: 'Open Sans', 'Lato', sans-serif;
+}
+
+.popup {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.confirm-button,
+.cancel-button {
+    margin-top: 10px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.confirm-button {
+    background-color: #007bff;
+    color: white;
+}
+
+.confirm-button:hover {
+    background-color: #327BFF;
+    color: white;
+}
+
+.cancel-button {
+    background-color: #ddd;
+    color: #333;
+}
+
+.cancel-button:hover {
+    background-color: #D4D4D4;
+}
+
+.product-user-comment {
+    margin: 3rem auto;
+    width: 90%;
+    max-width: 60rem;
+    border-radius: 1px;
+    background-color: #ddd;
+    padding: 1rem 2rem;
+    font-family: 'Open Sans', 'Lato', sans-serif;
+    text-align: center;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.product-user-comment form {
+    border: #000 solid 0px;
+    width: 100%;
+    display: inline-block;
+}
+
+.product-user-comment textarea {
+    width: 75%;
+    font-size: 16px;
+    margin-top: 20px;
+    padding: 15px;
+    resize: none;
+}
+
+.product-user-comment button {
+    height: 35px;
+    font-size: 16px;
+    color: black;
+    outline: none;
+    border: 1px #222 solid;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 5px;
+    text-align: center;
+    line-height: 1;
+    margin-top: 0px;
+    background-color: white;
+    padding: 0 10px;
+    width: 70px;
+    float: right;
+    margin-top: -10px;
+}
+
+.product-user-comment button:hover {
+    background-color: white;
+    color: black;
+}
+
+.user-comment-star-box {
+    width: 75%;
+    margin: 0 auto;
+    margin-top: 10px;
+    height: 45px;
+    background-color: white;
+    border: 1px solid #555;
+    font-size: 20px;
+    font-weight: bold;
+    color: #464646;
+    border-radius: 1px;
+}
+
+.user-star {
+    max-width: 20px;
+    margin-top: 10px;
+    background-image: url("images/star-gray.png");
+}
+
+.errorlist {
+    color: #d6000b;
+    font-size: 16px;
+    font-weight: bold;
+}
