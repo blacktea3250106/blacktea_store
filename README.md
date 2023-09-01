@@ -3,6 +3,9 @@
 Welcome to the BlackTea Store README! This document provides an overview of the features, functionality, and potential future enhancements of the BlackTea Store web application.
 
 ## Example Site
+
+Here are previews of the example pages for the BlackTea Store web application:
+
 | [![Home](screenshots/index.png)](http://blacktea-store.us-east-1.elasticbeanstalk.com/) | [![Products](screenshots/products.png)](http://blacktea-store.us-east-1.elasticbeanstalk.com/iphone-14) | [![Cart](screenshots/cart.png)](https://demo.themefisher.com/aviato/pricing.html) |
 |:---:|:---:|:---:|
 | **Home**  | **Product**  | **Cart** |
@@ -22,6 +25,7 @@ Welcome to the BlackTea Store README! This document provides an overview of the 
   - [Product Information](#product-information)
   - [Product Reviews](#product-reviews)
   - [Shopping Cart](#shopping-cart)
+  - [Related Products](#related-products)
 - [Future Enhancements](#future-enhancements)
 - [Technologies](#technologies)
 - [Usage](#usage)
@@ -60,6 +64,10 @@ Authenticated users have the ability to submit detailed product reviews, includi
 ### Shopping Cart
 
 Logged-in users can utilize the shopping cart feature, enabling them to adjust product quantities conveniently. The cart automatically calculates the total item count and overall order amount.
+
+### Related Products
+
+Discover related black tea products conveniently listed at the bottom of product pages, allowing you to explore and find similar items of interest.
 
 ## Future Enhancements
 
