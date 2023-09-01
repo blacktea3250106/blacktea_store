@@ -57,6 +57,7 @@ Logged-in users can utilize the shopping cart feature, enabling them to adjust p
 The BlackTea Store team has exciting future enhancements planned, including:
 
 - **Smart Customer Support:** Implementing an intelligent customer support system using AI chatbots to assist users.
+- **Favorites Area:** Introduce a favorites area where users can save and manage their favorite black tea products for quicker access.
 - **Payment Integration:** Integrate seamless payment gateways to simplify transactions for a better shopping experience.
 - **Footer Customization:** Enhance the website's footer by adding relevant information and links to improve user navigation.
 
