@@ -2,6 +2,15 @@
 
 Welcome to the BlackTea Store README! This document provides an overview of the features, functionality, and potential future enhancements of the BlackTea Store web application.
 
+## Example Site
+| [![Home](screenshots/index.png)](http://blacktea-store.us-east-1.elasticbeanstalk.com/) | [![Products](screenshots/products.png)](http://blacktea-store.us-east-1.elasticbeanstalk.com/iphone-14) | [![Cart](screenshots/cart.png)](https://demo.themefisher.com/aviato/pricing.html) |
+|:---:|:---:|:---:|
+| **Home**  | **Product**  | **Cart** |
+
+| [![Login](screenshots/login.png)](http://blacktea-store.us-east-1.elasticbeanstalk.com/login) | [![Register](screenshots/register.png)](http://blacktea-store.us-east-1.elasticbeanstalk.com/register) | [![Change Password](screenshots/change_password.png)](http://blacktea-store.us-east-1.elasticbeanstalk.com/change_password) |
+|:---:|:---:|:---:|
+| **Login**  | **Register**  | **Change Password** |
+
 ## Table of Contents
 
 - [Demo](#demo)
