@@ -9,10 +9,9 @@ Here are previews of the example pages for the BlackTea Store web application:
 | [![Home](screenshots/index.png)](http://blacktea-store.us-east-1.elasticbeanstalk.com/) | [![Products](screenshots/products.png)](http://blacktea-store.us-east-1.elasticbeanstalk.com/iphone-14) | [![Cart](screenshots/cart.png)](https://demo.themefisher.com/aviato/pricing.html) |
 |:---:|:---:|:---:|
 | **Home**  | **Product**  | **Cart** |
-
 | [![Login](screenshots/login.png)](http://blacktea-store.us-east-1.elasticbeanstalk.com/login) | [![Register](screenshots/register.png)](http://blacktea-store.us-east-1.elasticbeanstalk.com/register) | [![Change Password](screenshots/change_password.png)](http://blacktea-store.us-east-1.elasticbeanstalk.com/change_password) |
-|:---:|:---:|:---:|
 | **Login**  | **Register**  | **Change Password** |
+
 
 ## Table of Contents
 
