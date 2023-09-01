@@ -37,38 +37,23 @@ Explore the [BlackTea Store Demo](http://blacktea-store.us-east-1.elasticbeansta
 
 ## Features
 
-### Main Page
+- **Main Page:** The main page of the BlackTea Store provides an enticing selection of featured black tea products. Users can quickly access product categories and other essential sections of the website.
 
-The main page of the BlackTea Store provides an enticing selection of featured black tea products. Users can quickly access product categories and other essential sections of the website.
+- **Search Bar:** The integrated search bar allows users to find specific black tea products by entering relevant keywords. This feature ensures a seamless browsing experience.
 
-### Search Bar
+- **User Registration and Login:** New users can easily create an account by registering with their username, email, and password. Registered users can securely log in to access personalized features and account settings.
 
-The integrated search bar allows users to find specific black tea products by entering relevant keywords. This feature ensures a seamless browsing experience.
+- **Change Password:** Registered users have the convenience of changing their account password through a user-friendly interface, enhancing account security.
 
-### User Registration and Login
+- **Product Information:** Detailed information about each black tea product is presented on dedicated product pages. Users can explore product descriptions, prices, and images. Furthermore, users can choose product variants and quantities and add items to their shopping cart.
 
-New users can easily create an account by registering with their username, email, and password. Registered users can securely log in to access personalized features and account settings.
+- **Product Reviews:** Authenticated users have the ability to submit detailed product reviews, including star ratings and comments. They can edit and delete their reviews, contributing to an interactive and informative product experience.
 
-### Change Password
+- **Related Products:** Discover related black tea products conveniently listed at the bottom of product pages, allowing you to explore and find similar items of interest.
 
-Registered users have the convenience of changing their account password through a user-friendly interface, enhancing account security.
+- **Shopping Cart:** Logged-in users can utilize the shopping cart feature, enabling them to adjust product quantities conveniently. The cart automatically calculates the total item count and overall order amount.
 
-### Product Information
-
-Detailed information about each black tea product is presented on dedicated product pages. Users can explore product descriptions, prices, and images. Furthermore, users can choose product variants and quantities and add items to their shopping cart.
-
-### Product Reviews
-
-Authenticated users have the ability to submit detailed product reviews, including star ratings and comments. They can edit and delete their reviews, contributing to an interactive and informative product experience.
-
-### Shopping Cart
-
-Logged-in users can utilize the shopping cart feature, enabling them to adjust product quantities conveniently. The cart automatically calculates the total item count and overall order amount.
-
-### Related Products
-
-Discover related black tea products conveniently listed at the bottom of product pages, allowing you to explore and find similar items of interest.
-
+  
 ## Future Enhancements
 
 The BlackTea Store team has exciting future enhancements planned, including:
